@@ -105,7 +105,12 @@ export default class ImageTool {
    * @param {object} tool.api - Editor.js API
    * @param {boolean} tool.readOnly - read-only mode flag
    */
-  constructor({ data, config, api, readOnly }) {
+  constructor({
+    data,
+    config,
+    api,
+    readOnly,
+  }) {
     this.api = api;
     this.readOnly = readOnly;
 
@@ -310,8 +315,11 @@ export default class ImageTool {
 
     this._data.caption = data.caption || '';
     this.ui.fillCaption(this._data.caption);
+    this.ui.hideCaptionAreaIfEmpty(this._data.caption);
 
-    Tunes.tunes.forEach(({ name: tune }) => {
+    Tunes.tunes.forEach(({
+      name: tune,
+    }) => {
       const value = typeof data[tune] !== 'undefined' ? data[tune] === true || data[tune] === 'true' : false;
 
       this.setTune(tune, value);

@@ -1,4 +1,6 @@
-import { make } from './ui';
+import {
+  make
+} from './ui';
 import bgIcon from './svg/background.svg';
 import borderIcon from './svg/border.svg';
 import stretchedIcon from './svg/stretched.svg';
@@ -13,7 +15,11 @@ export default class Tunes {
    * @param {object} tune.actions - list of user defined tunes
    * @param {Function} tune.onChange - tune toggling callback
    */
-  constructor({ api, actions, onChange }) {
+  constructor({
+    api,
+    actions,
+    onChange,
+  }) {
     this.api = api;
     this.actions = actions;
     this.onChange = onChange;
@@ -26,22 +32,21 @@ export default class Tunes {
    * @returns {{name: string, icon: string, title: string}[]}
    */
   static get tunes() {
-    return [
-      {
-        name: 'withBorder',
-        icon: borderIcon,
-        title: 'With border',
-      },
-      {
-        name: 'stretched',
-        icon: stretchedIcon,
-        title: 'Stretch image',
-      },
-      {
-        name: 'withBackground',
-        icon: bgIcon,
-        title: 'With background',
-      },
+    return [ {
+      name: 'withBorder',
+      icon: borderIcon,
+      title: 'With border',
+    },
+    {
+      name: 'stretched',
+      icon: stretchedIcon,
+      title: 'Stretch image',
+    },
+    {
+      name: 'withBackground',
+      icon: bgIcon,
+      title: 'With background',
+    },
     ];
   }
 

@@ -13,7 +13,11 @@ export default class Uploader {
    * @param {Function} params.onUpload - one callback for all uploading (file, url, d-n-d, pasting)
    * @param {Function} params.onError - callback for uploading errors
    */
-  constructor({ config, onUpload, onError }) {
+  constructor({
+    config,
+    onUpload,
+    onError,
+  }) {
     this.config = config;
     this.onUpload = onUpload;
     this.onError = onError;
@@ -25,7 +29,9 @@ export default class Uploader {
    *
    * @param {Function} onPreview - callback fired when preview is ready
    */
-  uploadSelectedFile({ onPreview }) {
+  uploadSelectedFile({
+    onPreview,
+  }) {
     const preparePreview = function (file) {
       const reader = new FileReader();
 
@@ -43,7 +49,9 @@ export default class Uploader {
 
     // custom uploading
     if (this.config.uploader && typeof this.config.uploader.uploadByFile === 'function') {
-      upload = ajax.selectFiles({ accept: this.config.types }).then((files) => {
+      upload = ajax.selectFiles({
+        accept: this.config.types,
+      }).then((files) => {
         preparePreview(files[0]);
 
         const customUpload = this.config.uploader.uploadByFile(files[0]);
@@ -55,7 +63,7 @@ export default class Uploader {
         return customUpload;
       });
 
-    // default uploading
+      // default uploading
     } else {
       upload = ajax.transport({
         url: this.config.endpoints.byFile,
@@ -122,7 +130,9 @@ export default class Uploader {
    * @param {File} file - file pasted by drag-n-drop
    * @param {Function} onPreview - file pasted by drag-n-drop
    */
-  uploadByFile(file, { onPreview }) {
+  uploadByFile(file, {
+    onPreview,
+  }) {
     /**
      * Load file for preview
      *
@@ -183,5 +193,5 @@ export default class Uploader {
  * @returns {boolean}
  */
 function isPromise(object) {
-  return object && typeof object.then === "function";
+  return object && typeof object.then === 'function';
 }

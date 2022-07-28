@@ -14,7 +14,12 @@ export default class Ui {
    * @param {Function} ui.onSelectFile - callback for clicks on Select file button
    * @param {boolean} ui.readOnly - read-only mode flag
    */
-  constructor({ api, config, onSelectFile, readOnly }) {
+  constructor({
+    api,
+    config,
+    onSelectFile,
+    readOnly,
+  }) {
     this.api = api;
     this.config = config;
     this.onSelectFile = onSelectFile;
@@ -221,6 +226,18 @@ export default class Ui {
   fillCaption(text) {
     if (this.nodes.caption) {
       this.nodes.caption.innerHTML = text;
+    }
+  }
+
+  /**
+   * Toggles status of the UI
+   *
+   * @param {string} text - caption text
+   * @returns {void}
+   */
+  hideCaptionAreaIfEmpty(text) {
+    if (this.readOnly) {
+      this.nodes.caption.style.display = text ? 'block' : 'none';
     }
   }
 
